@@ -49,6 +49,8 @@ function StopGranadeSpam:RegisterEvens()
     end)
 
     Events:Subscribe('Player:Respawn', function(player)
+        guid = player.guid:ToString('D')
+
         self.GranadeResupplied[guid] = 0
     end)
 end
