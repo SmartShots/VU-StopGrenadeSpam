@@ -5,5 +5,7 @@
     "HasVeniceEXT": true,
     "Dependencies": {
         "veniceext": "^1.0.0"
-    }
+    },
+    "Authors": ["Maybe Ken"],
+    "URL": "https://gitlab.com/maybeken/vu-mod-stopgranadespam"
 }
