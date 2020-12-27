@@ -1,3 +1,7 @@
+# Description
+
+You can throw grenades, but if you spam it you will be kicked. You will get warning if you are reaching a configurable limit per life, limit reset every time you respawn.
+
 # Configuration
 
 ```lua
