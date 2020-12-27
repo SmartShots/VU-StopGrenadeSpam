@@ -1,9 +1,9 @@
 # Configuration
 
 ```lua
--- Maximum granade a player resupply before getting warned
-self.MaxGranadeBeforeWarn = 2
+-- Maximum grenade a player resupply before getting warned
+self.MaxGrenadeBeforeWarn = 2
 
--- Maximum granade a player resupply before getting kicked
-self.MaxGranadePerLife = 4
+-- Maximum grenade a player resupply before getting kicked
+self.MaxGrenadePerLife = 4
 ```

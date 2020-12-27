@@ -1,11 +1,11 @@
 {
-    "Name": "Stop Granade Spam",
-    "Description": "Prevent players from spamming granades.",
+    "Name": "Stop Grenade Spam",
+    "Description": "Prevent players from spamming grenades.",
     "Version": "1.0.0",
     "HasVeniceEXT": true,
     "Dependencies": {
         "veniceext": "^1.0.0"
     },
     "Authors": ["Maybe Ken"],
-    "URL": "https://gitlab.com/maybeken/vu-mod-stopgranadespam"
+    "URL": "https://gitlab.com/maybeken/vu-mod-stopgrenadespam"
 }

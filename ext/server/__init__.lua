@@ -1,23 +1,23 @@
-local StopGranadeSpam = class('StopGranadeSpam')
+local StopGrenadeSpam = class('StopGrenadeSpam')
 
-function StopGranadeSpam:__init()
-    print("Initializing StopGranadeSpam")
+function StopGrenadeSpam:__init()
+    print("Initializing StopGrenadeSpam")
     self:RegisterEvens()
     self:RegisterVars()
 end
 
-function StopGranadeSpam:RegisterVars()
-    -- Maximum granade a player resupply before getting warned
-    self.MaxGranadeBeforeWarn = 2
+function StopGrenadeSpam:RegisterVars()
+    -- Maximum grenade a player resupply before getting warned
+    self.MaxGrenadeBeforeWarn = 2
 
-    -- Maximum granade a player resupply before getting kicked
-    self.MaxGranadePerLife = 4
+    -- Maximum grenade a player resupply before getting kicked
+    self.MaxGrenadePerLife = 4
 
     -- DO NOT CHANGE
-    self.GranadeResupplied = {}
+    self.GrenadeResupplied = {}
 end
 
-function StopGranadeSpam:RegisterEvens()
+function StopGrenadeSpam:RegisterEvens()
     Events:Subscribe('Player:Resupply', function(player, givenMagsCount, supplier)
         local weapons = player.soldier.weaponsComponent.weapons
         
@@ -26,22 +26,22 @@ function StopGranadeSpam:RegisterEvens()
                 if value.name == 'Weapons/M67/M67' and value.primaryAmmo == 0 then
                     guid = player.guid:ToString('D')
 
-                    if self.GranadeResupplied[guid] ~= nil then
-                        self.GranadeResupplied[guid] = self.GranadeResupplied[guid] + 1
+                    if self.GrenadeResupplied[guid] ~= nil then
+                        self.GrenadeResupplied[guid] = self.GrenadeResupplied[guid] + 1
                     else
-                        self.GranadeResupplied[guid] = 1
+                        self.GrenadeResupplied[guid] = 1
                     end
         
-                    -- print(player.name .. ' resupplied ' .. self.GranadeResupplied[guid] .. ' granades')
+                    -- print(player.name .. ' resupplied ' .. self.GrenadeResupplied[guid] .. ' grenades')
                     
-                    if self.GranadeResupplied[guid] > self.MaxGranadePerLife then
-                        player:Kick('Granade spamming')
-                    elseif self.GranadeResupplied[guid] > self.MaxGranadeBeforeWarn then
-                        if self.GranadeResupplied[guid] > self.MaxGranadePerLife - 1 then
-                            ChatManager:SendMessage(player.name .. ' please stop spamming granades.')
+                    if self.GrenadeResupplied[guid] > self.MaxGrenadePerLife then
+                        player:Kick('Grenade spamming')
+                    elseif self.GrenadeResupplied[guid] > self.MaxGrenadeBeforeWarn then
+                        if self.GrenadeResupplied[guid] > self.MaxGrenadePerLife - 1 then
+                            ChatManager:SendMessage(player.name .. ' please stop spamming grenades.')
                         end
                         
-                        ChatManager:Yell('Warning: Stop spamming granades or you will be kicked.', 5, player)
+                        ChatManager:Yell('Warning: Stop spamming grenades or you will be kicked.', 5, player)
                     end
                 end
             end
@@ -51,8 +51,8 @@ function StopGranadeSpam:RegisterEvens()
     Events:Subscribe('Player:Respawn', function(player)
         guid = player.guid:ToString('D')
 
-        self.GranadeResupplied[guid] = 0
+        self.GrenadeResupplied[guid] = 0
     end)
 end
 
-g_StopGranadeSpam = StopGranadeSpam()
+g_StopGrenadeSpam = StopGrenadeSpam()
