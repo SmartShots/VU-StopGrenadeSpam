@@ -8,10 +8,10 @@ end
 
 function StopGrenadeSpam:RegisterVars()
     -- Maximum grenade a player resupply before getting warned
-    self.MaxGrenadeBeforeWarn = 2
+    self.MaxGrenadeBeforeWarn = 10
 
     -- Maximum grenade a player resupply before getting kicked
-    self.MaxGrenadePerLife = 4
+    self.MaxGrenadePerLife = 14
 
     -- DO NOT CHANGE
     self.GrenadeResupplied = {}
@@ -37,8 +37,8 @@ function StopGrenadeSpam:RegisterEvens()
                     if self.GrenadeResupplied[guid] > self.MaxGrenadePerLife then
                         player:Kick('Grenade spamming')
                     elseif self.GrenadeResupplied[guid] > self.MaxGrenadeBeforeWarn then
-                        if self.GrenadeResupplied[guid] > self.MaxGrenadePerLife - 1 then
-                            ChatManager:SendMessage(player.name .. ' please stop spamming grenades.')
+                        if self.GrenadeResupplied[guid] > self.MaxGrenadePerLife - 2 then
+                            ChatManager:SendMessage('FINAL WARNING: ' .. player.name .. ' stop spamming grenades.')
                         end
                         
                         ChatManager:Yell('Warning: Stop spamming grenades or you will be kicked.', 5, player)
@@ -49,9 +49,11 @@ function StopGrenadeSpam:RegisterEvens()
     end)
 
     Events:Subscribe('Player:Respawn', function(player)
-        guid = player.guid:ToString('D')
+        if player.guid ~= nil then
+                guid = player.guid:ToString('D')
 
-        self.GrenadeResupplied[guid] = 0
+            self.GrenadeResupplied[guid] = 0
+        end
     end)
 end
 
